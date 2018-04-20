@@ -4,6 +4,8 @@ namespace Directus\Filesystem;
 
 use Aws\S3\S3Client;
 use Directus\Util\ArrayUtils;
+use Enl\Flysystem\Cloudinary\ApiFacade;
+use Enl\Flysystem\Cloudinary\CloudinaryAdapter;
 use League\Flysystem\Adapter\Local as LocalAdapter;
 use League\Flysystem\AdapterInterface;
 use League\Flysystem\AwsS3v3\AwsS3Adapter as S3Adapter;
@@ -18,11 +20,18 @@ class FilesystemFactory
         switch ($config['adapter']) {
             case 's3':
                 return self::createS3Adapter($config);
-                break;
+            case 'cloudinary':
+                return self::createCloudinaryAdapter($config);
             case 'local':
             default:
                 return self::createLocalAdapter($config);
         }
+    }
+
+    public static function createCloudinaryAdapter(Array $config)
+    {
+        $apiFacade = new ApiFacade($config);
+        return new Flysystem(new CloudinaryAdapter($apiFacade));
     }
 
     public static function createLocalAdapter(Array $config)
