@@ -2,6 +2,7 @@
 
 namespace Directus\Filesystem;
 
+use League\Flysystem\Adapter\AbstractAdapter;
 use League\Flysystem\Filesystem as Flysystem;
 use League\Flysystem\FilesystemInterface as FlysystemInterface;
 
@@ -43,6 +44,12 @@ class Filesystem
      */
     public function getPath()
     {
-        return $this->adapter->getAdapter()->getPathPrefix();
+        $flysystemAdapter = $this->adapter->getAdapter();
+
+        if ($flysystemAdapter instanceof AbstractAdapter) {
+            return $flysystemAdapter->getPathPrefix();
+        }
+
+        return '';
     }
 }
