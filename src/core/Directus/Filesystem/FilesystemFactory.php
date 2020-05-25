@@ -2,6 +2,8 @@
 
 namespace Directus\Filesystem;
 
+use Enl\Flysystem\Cloudinary\ApiFacade;
+use Enl\Flysystem\Cloudinary\CloudinaryAdapter;
 use OSS\OssClient;
 use OSS\Core\OssException;
 use Aws\S3\S3Client;
@@ -32,11 +34,20 @@ class FilesystemFactory
             case 'azure':
                 return self::createAzureAdapter($config, $rootKey);
                 break;
+			case 'cloudinary':
+				return self::createCloudinaryAdapter($config);
+				break;
             case 'local':
             default:
                 return self::createLocalAdapter($config, $rootKey);
         }
     }
+
+	public static function createCloudinaryAdapter(Array $config)
+	{
+		$apiFacade = new ApiFacade($config);
+		return new Flysystem(new CloudinaryAdapter($apiFacade, $config['root']));
+	}
 
     public static function createLocalAdapter(Array $config, $rootKey = 'root')
     {
