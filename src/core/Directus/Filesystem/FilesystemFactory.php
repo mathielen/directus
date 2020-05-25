@@ -45,7 +45,7 @@ class FilesystemFactory
 
 	public static function createCloudinaryAdapter(Array $config)
 	{
-		$apiFacade = new ApiFacade($config);
+		$apiFacade = new ApiFacade($config['adapter_options']);
 		return new Flysystem(new CloudinaryAdapter($apiFacade, $config['root']));
 	}
 

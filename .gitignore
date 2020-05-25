@@ -65,4 +65,5 @@ public/cliserver.php
 # Cache generated while filesystem adapter
 /cache/*
 
-/vendor
+vendor
+composer.lock

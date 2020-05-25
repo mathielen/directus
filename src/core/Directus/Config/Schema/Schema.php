@@ -58,7 +58,10 @@ class Schema
                 new Value('thumb_root', Types::STRING, 'public/uploads/_/generated'),
                 new Value('proxy_downloads?', Types::BOOLEAN, false),
 
-                // S3
+				//un-checked array with arbitrary options
+				new Value('adapter_options', Types::ARRAY, []),
+
+				// S3
                 new Value('key?', Types::STRING, 's3-key'),
                 new Value('secret?', Types::STRING, 's3-secret'),
                 new Value('region?', Types::STRING, 's3-region'),
