@@ -131,6 +131,10 @@ class Schema
                 new Value('public_key', Types::STRING, '<type-a-public-authentication-key-string>'),
                 new Value('ttl', Types::INTEGER, 20),
                 new Group('social_providers', [
+					new Group('saml2?', [
+						new Value('entity_id', Types::STRING, ''),
+						new Value('sign_on_service_url', Types::STRING, ''),
+					]),
                     new Group('okta?', [
                         new Value('client_id', Types::STRING, ''),
                         new Value('client_secret', Types::STRING, ''),
