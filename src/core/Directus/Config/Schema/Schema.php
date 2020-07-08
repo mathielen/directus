@@ -133,7 +133,8 @@ class Schema
                 new Group('social_providers', [
 					new Group('saml2?', [
 						new Value('entity_id', Types::STRING, ''),
-						new Value('sign_on_service_url', Types::STRING, ''),
+						new Value('single_sign_on_service', Types::STRING, ''),
+						new Value('single_logout_service', Types::STRING, ''),
 					]),
                     new Group('okta?', [
                         new Value('client_id', Types::STRING, ''),
