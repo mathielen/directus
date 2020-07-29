@@ -135,6 +135,7 @@ class Schema
 						new Value('entity_id', Types::STRING, ''),
 						new Value('single_sign_on_service', Types::STRING, ''),
 						new Value('single_logout_service', Types::STRING, ''),
+						new Value('user_creator_cls?', Types::STRING, ''),
 					]),
                     new Group('okta?', [
                         new Value('client_id', Types::STRING, ''),
