@@ -66,4 +66,5 @@ public/cliserver.php
 /cache/*
 
 vendor
+vendor/*
 composer.lock

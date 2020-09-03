@@ -8,6 +8,11 @@ class Response extends Cache
 
     public function tag($tags)
     {
+    	//TODO test
+    	if (!is_array($tags)) {
+    		return $this;
+		}
+
         $this->tags = array_merge($this->tags, (array)$tags);
 
         return $this;
