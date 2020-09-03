@@ -8,9 +8,11 @@ class Response extends Cache
 
     public function tag($tags)
     {
-    	//TODO test
-    	if (!is_array($tags)) {
-    		return $this;
+    	//array_merge is a performance killer when running in a loop (which this method is often called from)
+		//if the value is a scalar anyway, we dont need to call it
+    	if (is_scalar($tags)) {
+			$this->tags[] = $tags;
+			return $this;
 		}
 
         $this->tags = array_merge($this->tags, (array)$tags);
